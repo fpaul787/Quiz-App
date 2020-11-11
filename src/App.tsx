@@ -28,7 +28,20 @@ const App = () => {
   // console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
 
   const startTrivia = async () => {
-    
+    setLoading(true);
+    setGameOver(false);
+
+    const newQuestions = await fetchQuizQuestions(
+      TOTAL_QUESTIONS,
+      Difficulty.EASY
+    );
+
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
+
   }
 
   const checkAnswer = (e : React.MouseEvent<HTMLButtonElement>) => {
@@ -42,11 +55,14 @@ const App = () => {
   return (
     <div className="App">
       <h1>REACT QUIZ</h1>
-      <button className="start" onClick={startTrivia}>
+      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        <button className="start" onClick={startTrivia}>
         Start
-      </button>
-      <p className="score">Score:</p>
-      <p>Loading Question ...</p>
+        </button>
+      ) : null}
+      { !gameOver ? <p className="score">Score:</p> : null}
+      {loading && <p>Loading Questions ...</p>}
+      
       {/* <QuestionCard 
         questionNr={number + 1}
         totalQuesetions={TOTAL_QUESTIONS}
