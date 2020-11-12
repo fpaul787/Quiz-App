@@ -37,6 +37,7 @@ const App = () => {
     );
 
     setQuestions(newQuestions);
+    console.log(newQuestions)
     setScore(0);
     setUserAnswers([]);
     setNumber(0);
@@ -62,15 +63,17 @@ const App = () => {
       ) : null}
       { !gameOver ? <p className="score">Score:</p> : null}
       {loading && <p>Loading Questions ...</p>}
+      {!loading && !gameOver  && (
+        <QuestionCard
+          questionNr={number + 1}
+          totalQuesetions={TOTAL_QUESTIONS}
+          question={questions[number].question}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined}
+          callback={checkAnswer}
+        />
+      )}
       
-      {/* <QuestionCard 
-        questionNr={number + 1}
-        totalQuesetions={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number] : undefined}
-        callback={checkAnswer}
-      /> */}
       <button className="next" onClick={nextQuestion}>
         Next Question
       </button>
