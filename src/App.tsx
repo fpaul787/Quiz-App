@@ -27,6 +27,7 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [time, setTime] = useState(0);
 
   // console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
 
@@ -44,6 +45,8 @@ const App = () => {
     setUserAnswers([]);
     setNumber(0);
     setLoading(false);
+    var seconds = new Date().getTime() / 1000
+    setTime(seconds);
 
   }
 
@@ -77,9 +80,15 @@ const App = () => {
       setGameOver(true);
     }else{
       setNumber(nextQuestion);
+      
+      // var newTime = new Date().getTime() / 1000;
+      // var passedTime = newTime - time;
+      // console.log(passedTime.toFixed(2));
+      setTime(new Date().getTime() / 1000);
     }
 
   }
+
   return (
     <>
     <GlobalStyle />

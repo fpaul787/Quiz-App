@@ -7,7 +7,6 @@ export type Question = {
   incorrect_answers: string[];
   question: string;
   type: string;
-  timeToAnswer: number;
 };
 
 // add property to type
