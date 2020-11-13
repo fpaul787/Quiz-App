@@ -81,9 +81,9 @@ const App = () => {
     }else{
       setNumber(nextQuestion);
       
-      // var newTime = new Date().getTime() / 1000;
-      // var passedTime = newTime - time;
-      // console.log(passedTime.toFixed(2));
+      var newTime = new Date().getTime() / 1000;
+      var passedTime = newTime - time;
+      console.log(passedTime.toFixed(2));
       setTime(new Date().getTime() / 1000);
     }
 
